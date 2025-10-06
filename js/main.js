@@ -5,9 +5,9 @@ function getRandomNumber(min, max) {
 }
 
 function generateMessage() {
-  const count_message = getRandomNumber(1, 2);
+  const COUNT_MESSAGE = getRandomNumber(1, 2);
   let message = '';
-  for (let i = 0; i < count_message; i++) {
+  for (let i = 0; i < COUNT_MESSAGE; i++) {
     if (i > 0) {
       message += ' ';
     }
@@ -26,10 +26,10 @@ function generateComment() {
 }
 
 function generateComments() {
-  const count_comments = getRandomNumber(0, 30);
+  const COUNT_COMMENTS = getRandomNumber(0, 30);
   const comments = [];
 
-  for (let i = 0; i < count_comments; i++) {
+  for (let i = 0; i < COUNT_COMMENTS; i++) {
     comments.push(generateComment());
   }
 

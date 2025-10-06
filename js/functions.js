@@ -2,6 +2,7 @@ function isStringLengthValid(str, maxLength) {
   return str.length <= maxLength;
 }
 
+
 function isPalindrome(str) {
   const normalizedStr = str.toLowerCase().replaceAll(' ', '');
   for (let i = 0; i < Math.floor(normalizedStr.length / 2); i++) {
