@@ -1,4 +1,4 @@
-import { comment_messages, names, descriptions } from './constants.js';
+import { COMMENT_MESSAGES, NAMES, DESCRIPTIONS } from './constants.js';
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -11,7 +11,7 @@ function generateMessage() {
     if (i > 0) {
       message += ' ';
     }
-    message += comment_messages[getRandomNumber(0, comment_messages.length - 1)];
+    message += COMMENT_MESSAGES[getRandomNumber(0, COMMENT_MESSAGES.length - 1)];
   }
   return message;
 }
@@ -21,7 +21,7 @@ function generateComment() {
     id: crypto.randomUUID(),
     avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
     message: generateMessage(),
-    name: names[getRandomNumber(0, names.length - 1)]
+    name: NAMES[getRandomNumber(0, NAMES.length - 1)]
   };
 }
 
@@ -43,7 +43,7 @@ function getInformationPhotos() {
     const photo = {
       id: i,
       url: `photos/${i}.jpg`,
-      description: descriptions[i - 1],
+      description: DESCRIPTIONS[i - 1],
       likes: getRandomNumber(15, 200),
       comments: generateComments()
     };
