@@ -1,3 +1,3 @@
-import { getInformationPhotos } from './data.js';
+import { getInformationPhotos } from './photosDataGeneration.js';
 
 console.log(getInformationPhotos());
