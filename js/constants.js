@@ -52,3 +52,6 @@ const DESCRIPTIONS = [
   'Город в утреннем тумане будто дремлет.',
   'Мост соединяет не только берега, но и воспоминания.'
 ];
+
+
+export{NAMES, COMMENT_MESSAGES, DESCRIPTIONS};
