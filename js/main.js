@@ -1,3 +1,5 @@
-import { getInformationPhotos } from './photosDataGeneration.js';
+import { renderPictures } from './thumbnails.js';
 
-console.log(getInformationPhotos());
+document.addEventListener('DOMContentLoaded', () => {
+  renderPictures();
+});
