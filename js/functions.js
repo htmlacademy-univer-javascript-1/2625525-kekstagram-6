@@ -24,3 +24,20 @@ function extractNumbers(strOrNum) {
   }
   return numberStr ? parseInt(numberStr, 10) : NaN;
 }
+
+
+function canScheduleMeeting(workBegin, workFinish, meetingBegin, meetingLength) {
+  function convertToMinutes(clockTime) {
+    const [hourPart, minutePart] = clockTime.split(':');
+    return Number(hourPart) * 60 + Number(minutePart);
+  }
+
+  const workStart = convertToMinutes(workBegin);
+  const workEnd = convertToMinutes(workFinish);
+  const meetingStart = convertToMinutes(meetingBegin);
+  const meetingEnd = meetingStart + meetingLength;
+  const startsInTime = meetingStart >= workStart;
+  const endsInTime = meetingEnd <= workEnd;
+
+  return startsInTime && endsInTime;
+}
