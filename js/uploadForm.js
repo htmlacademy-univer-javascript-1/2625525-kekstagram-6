@@ -1,3 +1,5 @@
+import { resetImageSettings } from './photoEffects.js';
+
 const filePicker = document.getElementById('upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const documentBody = document.body;
@@ -36,6 +38,9 @@ const closeUploadModal = () => {
   uploadOverlay.classList.add('hidden');
   documentBody.classList.remove('modal-open');
   document.removeEventListener('keydown', escapeKeyHandler);
+
+  resetImageSettings();
+
   resetUploadForm();
 };
 

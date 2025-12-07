@@ -1,7 +1,3 @@
-import { renderPictures } from './thumbnails.js';
-import './upload-form.js';
+import './thumbnails.js';
+import './uploadForm.js';
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderPictures();
-});
