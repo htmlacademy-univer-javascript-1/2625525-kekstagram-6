@@ -7,27 +7,33 @@ const sliderContainer = document.querySelector('.img-upload__effect-level');
 const effectSlider = document.querySelector('.effect-level__slider');
 const effectValueInput = document.querySelector('.effect-level__value');
 
-const filters = {
-  none: {filter: '', min: 0, max: 100, step: 1, unit: '', start: 100, hasSlider: false },
-  chrome: { filter: 'grayscale', min: 0, max: 1, step: 0.1, unit: '', start: 1, hasSlider: true },
-  sepia: { filter: 'sepia', min: 0, max: 1, step: 0.1, unit: '', start: 1, hasSlider: true },
-  marvin: { filter: 'invert', min: 0, max: 100, step: 1, unit: '%', start: 100, hasSlider: true },
-  phobos: { filter: 'blur', min: 0, max: 3, step: 0.1, unit: 'px', start: 3, hasSlider: true },
-  heat: { filter: 'brightness', min: 1, max: 3, step: 0.1, unit: '', start: 3, hasSlider: true }
+const FilterType = {
+  NONE: 'none',
+  CHROME: 'chrome',
+  SEPIA: 'sepia',
+  MARVIN: 'marvin',
+  PHOBOS: 'phobos',
+  HEAT: 'heat'
 };
 
-let activeFilter = 'none';
+const filters = {
+  [FilterType.NONE]: {filter: '', min: 0, max: 100, step: 1, unit: '', start: 100, hasSlider: false },
+  [FilterType.CHROME]: { filter: 'grayscale', min: 0, max: 1, step: 0.1, unit: '', start: 1, hasSlider: true },
+  [FilterType.SEPIA]: { filter: 'sepia', min: 0, max: 1, step: 0.1, unit: '', start: 1, hasSlider: true },
+  [FilterType.MARVIN]: { filter: 'invert', min: 0, max: 100, step: 1, unit: '%', start: 100, hasSlider: true },
+  [FilterType.PHOBOS]: { filter: 'blur', min: 0, max: 3, step: 0.1, unit: 'px', start: 3, hasSlider: true },
+  [FilterType.HEAT]: { filter: 'brightness', min: 1, max: 3, step: 0.1, unit: '', start: 3, hasSlider: true }
+};
 
+let activeFilter = FilterType.NONE;
 
 scaleValueInput.value = '100%';
 previewImg.style.transform = 'scale(1)';
-
 
 const changeScale = (percent) => {
   previewImg.style.transform = `scale(${percent / 100})`;
   scaleValueInput.value = `${percent}%`;
 };
-
 
 scaleDownBtn.addEventListener('click', () => {
   const current = parseInt(scaleValueInput.value, 10);
@@ -35,24 +41,20 @@ scaleDownBtn.addEventListener('click', () => {
   changeScale(newValue);
 });
 
-
 scaleUpBtn.addEventListener('click', () => {
   const current = parseInt(scaleValueInput.value, 10);
   const newValue = Math.min(current + 25, 100);
   changeScale(newValue);
 });
 
-
 noUiSlider.create(effectSlider, {
-  start: filters.none.start,
-  range: { min: filters.none.min, max: filters.none.max },
-  step: filters.none.step,
+  start: filters[FilterType.NONE].start,
+  range: { min: filters[FilterType.NONE].min, max: filters[FilterType.NONE].max },
+  step: filters[FilterType.NONE].step,
   connect: 'lower'
 });
 
-
 sliderContainer.classList.add('hidden');
-
 
 const updateFilter = (filterName, intensity) => {
   const currentFilter = filters[filterName];
@@ -65,7 +67,6 @@ const updateFilter = (filterName, intensity) => {
 
   effectValueInput.value = intensity;
 };
-
 
 filterRadios.forEach((radio) => {
   radio.addEventListener('change', () => {
@@ -88,11 +89,9 @@ filterRadios.forEach((radio) => {
   });
 });
 
-
 effectSlider.noUiSlider.on('update', (values) => {
   updateFilter(activeFilter, values[0]);
 });
-
 
 export const resetImageSettings = () => {
   scaleValueInput.value = '100%';
@@ -106,9 +105,7 @@ export const resetImageSettings = () => {
   if (defaultFilter) {
     defaultFilter.checked = true;
   }
-  activeFilter = 'none';
+  activeFilter = FilterType.NONE;
 
-  effectSlider.noUiSlider.set(filters.none.start);
+  effectSlider.noUiSlider.set(filters[FilterType.NONE].start);
 };
-
-
